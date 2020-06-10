@@ -12,4 +12,4 @@ To use it in your app, declare it on your manifest file:
 }
 ```
 
-You need to have a app that implements the schema declared in this app.
+You need to have an app that implements the schema declared in this app.
