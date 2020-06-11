@@ -8,9 +8,5 @@
     "graphql": "1.x",
     "docs": "0.x"
   },
-  "dependencies": {
-    "vtex.messages": "1.x",
-    "vtex.catalog-api-proxy": "0.x"
-  },
   "$schema": "https://raw.githubusercontent.com/vtex/node-vtex-api/master/gen/manifest.schema"
 }
