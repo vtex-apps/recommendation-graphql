@@ -1,0 +1,4 @@
+input UserNavigationInfo {
+  google: Boolean!
+  bing: Boolean!
+}

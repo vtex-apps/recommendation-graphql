@@ -1,0 +1,157 @@
+type APIBasedRecommendation {
+  """
+  IDs of items used as a basis for recommendation
+  """
+  baseIds: [String]
+  """
+  Items used as a basis for recommendation
+  """
+  baseItems: [ProductRecommendation]
+  """
+  Recommended item IDs
+  """
+  recommendationIds: [String]
+  """
+  Recommended items
+  """
+  recommendationItems: [ProductRecommendation]
+  """
+  Defines whether there is a secondary strategy
+  """
+  secondaryStrategy: Boolean
+}
+
+type ProductRecommendation {
+  """
+  ID of the product
+  """
+  productId: String
+  """
+  Score of the product obtained by the recommendation
+  """
+  score: Float
+  """
+  List of offers for the product
+  """
+  offers: [ProductRecommendationOffer]
+  """
+  Product Specifications
+  """
+  specs: [ProductSpec]
+}
+
+type ProductRecommendationOffer {
+  """
+  Offer ID (always the same as the SKU ID)
+  """
+  offerId: String
+  """
+  ID of the product
+  """
+  originalProductId: String
+  """
+  SKU ID
+  """
+  sku: String
+  """
+
+  """
+  distributionCenter: String
+  """
+  Name of the offer
+  """
+  name: String
+  """
+  Description of the offer
+  """
+  description: String
+  """
+  Offer URL
+  """
+  url: String
+  """
+  Image URL
+  """
+  imageUrl: String
+  """
+  Secondary image URL
+  """
+  secondaryImageUrl: String
+  """
+  Offer price
+  """
+  price: String
+  """
+  Original price without discount
+  """
+  oldPrice: String
+  """
+  Currency symbol
+  """
+  currencySymbol: String
+  """
+  Defines whether the Offer has discount
+  """
+  hasDiscount: Boolean
+  """
+  Percentage of the discount
+  """
+  discountPercentage: Float
+  """
+  Product brand
+  """
+  brand: String
+  """
+  Offer score obtained by the recommendation
+  """
+  score: Float
+  """
+  SKU Specifications
+  """
+  specs: [ProductSpec]
+  """
+  Product categories
+  """
+  categories: [Category]
+
+  """
+  Converted from Map[String, String]
+  """
+  extraInfo: [KeyValue]
+  installment: [KeyValue]
+  imageUrlMap: [KeyValue]
+}
+
+type ProductSpec {
+  id: String
+  label: String
+  type: String
+  offerId: String
+  subSpecs: [ProductSpec]
+
+  """
+  Converted from Map[String, String]
+  """
+  imagesSsl: [KeyValue]
+  images: [KeyValue]
+}
+
+type Category {
+  """
+  Category name
+  """
+  name: String
+  """
+  Parent category ID
+  """
+  parent: String
+  """
+  Category ancestor IDs
+  """
+  ancestors: [String]
+}
+
+type KeyValue {
+  key: String
+  value: String
+}

@@ -1,0 +1,13 @@
+type Query {
+  recommendation(
+    store: String!
+    strategy: String!
+    secondaryStrategy: String
+    user: String
+    anonymousUser: String
+    products: [String]
+    categories: [String]
+    userNavigationInfo: UserNavigationInfo
+    settings: StoreFrontSettings
+  ): [APIBasedRecommendation]
+}
