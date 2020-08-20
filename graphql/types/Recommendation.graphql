@@ -79,6 +79,7 @@ type Product {
   productSpecifications: [String]
   categoryIds: [String]
   boost: Boost
+  specificationGroups: string
 }
 
 type Recommendation {
