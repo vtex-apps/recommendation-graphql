@@ -1,157 +1,164 @@
-type APIBasedRecommendation {
-  """
-  IDs of items used as a basis for recommendation
-  """
-  baseIds: [String]
+type Seller {
+  id: String
+  name: String
+  tax: Int
+}
+
+type Policy {
+  id: String
+  sellers: [Seller]
+}
+
+type Attribute {
+  key: String
+  value: String
+}
+
+type SKU {
+  id: String
+  reference: String
+  oldPrice: Float
+  price: Float
+  policies: [Policy]
+  attributes: [Attribute]
+  stock: Int
+  sellers: [Seller]
+}
+
+type ExtraData {
+  key: String
+  value: String
+}
+
+type Installment {
+  interest: Boolean
+  count: Int
+  value: Float
+}
+
+type Image {
+  name: String
+  value: String
+}
+
+type Boost {
+  newness: Float
+  image: Float
+  revenue: Float
+  discount: Float
+  click: Float
+  availableSpecsCount: Float
+  promotion: Float
+  order: Float
+}
+
+type Product {
+  id: String
+  name: String
+  product: String
+  timestamp: String
+  url: String
+  link: String
+  description: String
+  reference: String
+  price: Float
+  oldPrice: Float
+  skus: [SKU]
+  year: Int
+  brand: String
+  brandId: String
+  extraData: [ExtraData]
+  installment: Installment
+  measurementUnit: String
+  unitMultiplier: Int 
+  tax: Int
+  categories: [String]
+  stock: Int
+  availableTradePolicies: [String]
+  images: [Image]
+  productSpecifications: [String]
+  categoryIds: [String]
+  boost: Boost
+}
+
+type Recommendation {
   """
   Items used as a basis for recommendation
   """
-  baseItems: [ProductRecommendation]
-  """
-  Recommended item IDs
-  """
-  recommendationIds: [String]
+  base: [Product]
   """
   Recommended items
   """
-  recommendationItems: [ProductRecommendation]
-  """
-  Defines whether there is a secondary strategy
-  """
-  secondaryStrategy: Boolean
+  recommended: [Product]
 }
 
-type ProductRecommendation {
-  """
-  ID of the product
-  """
-  productId: String
-  """
-  Score of the product obtained by the recommendation
-  """
-  score: Float
-  """
-  List of offers for the product
-  """
-  offers: [ProductRecommendationOffer]
-  """
-  Product Specifications
-  """
-  specs: [ProductSpec]
+type RecommendationResponse {
+  recommendations: [Recommendation]
 }
 
-type ProductRecommendationOffer {
-  """
-  Offer ID (always the same as the SKU ID)
-  """
-  offerId: String
-  """
-  ID of the product
-  """
-  originalProductId: String
-  """
-  SKU ID
-  """
-  sku: String
-  """
-
-  """
-  distributionCenter: String
-  """
-  Name of the offer
-  """
-  name: String
-  """
-  Description of the offer
-  """
-  description: String
-  """
-  Offer URL
-  """
-  url: String
-  """
-  Image URL
-  """
-  imageUrl: String
-  """
-  Secondary image URL
-  """
-  secondaryImageUrl: String
-  """
-  Offer price
-  """
-  price: String
-  """
-  Original price without discount
-  """
-  oldPrice: String
-  """
-  Currency symbol
-  """
-  currencySymbol: String
-  """
-  Defines whether the Offer has discount
-  """
-  hasDiscount: Boolean
-  """
-  Percentage of the discount
-  """
-  discountPercentage: Float
-  """
-  Product brand
-  """
-  brand: String
-  """
-  Offer score obtained by the recommendation
-  """
-  score: Float
-  """
-  SKU Specifications
-  """
-  specs: [ProductSpec]
-  """
-  Product categories
-  """
-  categories: [Category]
-
-  """
-  Converted from Map[String, String]
-  """
-  extraInfo: [KeyValue]
-  installment: [KeyValue]
-  imageUrlMap: [KeyValue]
+type RecommendationAPI {
+  variantId: String
+  response: RecommendationResponse
 }
 
-type ProductSpec {
-  id: String
-  label: String
+enum StrategyType {
+  BEST_SELLERS
+  MOST_POPULAR
+  PRICE_REDUCTION
+  NEW_RELEASES
+  NAVIGATION_HISTORY
+  RECOMMENDATION_HISTORY
+  SIMILAR_PRODUCTS
+  BEST_CHOICE
+  BOUGHT_TOGETHER
+  CART_HISTORY
+  ORDER_HISTORY
+}
+
+enum RequestInputType {
+  USER
+  CATEGORY
+  PRODUCT
+  TAG_GROUP
+  CAMPAIGN
+  GROUP
+  ANONYMOUS_USER
+  BRAND
+  STORE
+}
+
+input SortOption {
+  field: String
+  desc: Boolean
+}
+
+input Filter {
   type: String
-  offerId: String
-  subSpecs: [ProductSpec]
-
-  """
-  Converted from Map[String, String]
-  """
-  imagesSsl: [KeyValue]
-  images: [KeyValue]
-}
-
-type Category {
-  """
-  Category name
-  """
-  name: String
-  """
-  Parent category ID
-  """
-  parent: String
-  """
-  Category ancestor IDs
-  """
-  ancestors: [String]
-}
-
-type KeyValue {
-  key: String
+  field: String
   value: String
+}
+
+input Count {
+  minimum: Int!
+  recommendations: Int!
+}
+
+input RecommendationOptions {
+  count: Count
+  sort: [SortOption]
+  filter: [Filter]
+}
+
+input RecommendationRequest {
+  strategy: StrategyType!
+  input: {
+    type: RequestInputType
+    values: [String]
+  }
+  recommendation: RecommendationOptions
+}
+
+input RecommendationInput {
+  sessionId: String!
+  request: RecommendationRequest
 }
