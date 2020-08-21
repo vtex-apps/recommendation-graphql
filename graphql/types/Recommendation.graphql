@@ -1,85 +1,104 @@
+type Offer {
+  Installments: [Installment]
+  Price: Float
+  ListPrice: Float
+  PriceWithoutDiscount: Float
+  AvailableQuantity: Float
+  Tax: Float
+  taxPercentage: Float
+}
+
 type Seller {
-  id: String
-  name: String
-  tax: Int
-}
-
-type Policy {
-  id: String
-  sellers: [Seller]
-}
-
-type Attribute {
-  key: String
-  value: String
-}
-
-type SKU {
-  id: String
-  reference: String
-  oldPrice: Float
-  price: Float
-  policies: [Policy]
-  attributes: [Attribute]
-  stock: Int
-  sellers: [Seller]
-}
-
-type ExtraData {
-  key: String
-  value: String
+  sellerId: String
+  sellerName: String
+  addToCartLink: String
+  sellerDefault: Boolean
+  commertialOffer: Offer
 }
 
 type Installment {
-  interest: Boolean
-  count: Int
-  value: Float
+  Value: Float
+  InterestRate: Float
+  TotalValuePlusInterestRate: Float
+  NumberOfInstallments: Int
+  Name: String
 }
 
 type Image {
-  name: String
-  value: String
+  cacheId: ID
+  imageId: ID
+  imageLabel: String
+  imageTag: String
+  imageUrl: String
+  imageText: String
 }
 
-type Boost {
-  newness: Float
-  image: Float
-  revenue: Float
-  discount: Float
-  click: Float
-  availableSpecsCount: Float
-  promotion: Float
-  order: Float
+type ClusterHighlight {
+  id: ID
+  name: String
+}
+
+type Reference {
+  Key: String
+  Value: String
+}
+
+type Property {
+  name: String
+  values: [String]
+}
+
+type SKU {
+  itemId: String
+  name: String
+  nameComplete: String
+  complementName: String
+  ean: String
+  referenceId: [Reference]
+  measurementUnit: String
+  unitMultiplier: Float
+  images: [Image]
+  sellers: [Seller]
+  variations: [Property]
+}
+
+type SpecificationGroup {
+  originalName: String
+  name: String
+  specifications: [SpecificationGroupProperty]
+}
+
+type SpecificationGroupProperty {
+  originalName: String
+  name: String
+  values: [String]
+}
+
+type PriceRange {
+  highPrice: Float
+  lowPrice: Float
+}
+
+type ProductPriceRange {
+  sellingPrice: PriceRange
+  listPrice: PriceRange
 }
 
 type Product {
-  id: String
-  name: String
-  product: String
-  timestamp: String
-  url: String
-  link: String
-  description: String
-  reference: String
-  price: Float
-  oldPrice: Float
-  skus: [SKU]
-  year: Int
   brand: String
-  brandId: String
-  extraData: [ExtraData]
-  installment: Installment
-  measurementUnit: String
-  unitMultiplier: Int 
-  tax: Int
+  brandId: Int
+  cacheId: String
   categories: [String]
-  stock: Int
-  availableTradePolicies: [String]
-  images: [Image]
-  productSpecifications: [String]
-  categoryIds: [String]
-  boost: Boost
-  specificationGroups: string
+  categoriesIds: [String]
+  description: String
+  items: [SKU]
+  productId: String
+  productName: String
+  priceRange: ProductPriceRange
+  link: String
+  linkText: String
+  productReference: String
+  specificationGroups: [SpecificationGroup]
 }
 
 type Recommendation {
