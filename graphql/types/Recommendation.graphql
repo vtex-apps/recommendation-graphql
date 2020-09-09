@@ -159,7 +159,7 @@ input Filter {
 }
 
 input Count {
-  minimum: Int!
+  minimum: Int
   recommendations: Int!
 }
 
@@ -169,16 +169,18 @@ input RecommendationOptions {
   filter: [Filter]
 }
 
-input RecommendationRequest {
-  strategy: StrategyType!
-  input: {
-    type: RequestInputType
-    values: [String]
-  }
-  recommendation: RecommendationOptions
+input InputType {
+  primary: RequestInputType
+}
+
+input Input {
+  type: InputType
+  values: [String]
 }
 
 input RecommendationInput {
   sessionId: String!
-  request: RecommendationRequest
+  strategy: StrategyType!
+  input: Input
+  recommendation: RecommendationOptions
 }
