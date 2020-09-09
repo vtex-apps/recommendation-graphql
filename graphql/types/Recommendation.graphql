@@ -154,8 +154,8 @@ input SortOption {
 }
 
 input Filter {
-  type: String
-  field: String
+  name: String
+  mode: String
   value: String
 }
 
