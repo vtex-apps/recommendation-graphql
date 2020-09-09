@@ -98,6 +98,7 @@ type Product {
   link: String
   linkText: String
   productReference: String
+  properties: [String]
   specificationGroups: [SpecificationGroup]
 }
 
