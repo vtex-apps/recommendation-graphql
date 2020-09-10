@@ -154,20 +154,18 @@ input SortOption {
 }
 
 input Filter {
-  name: String
-  mode: String
+  field: String
+  condition: String
   value: String
 }
 
 input Count {
   minimum: Int
-  recommendations: Int!
+  recommendations: Int
 }
 
 input RecommendationOptions {
   count: Count
-  sort: [SortOption]
-  filter: [Filter]
 }
 
 input InputType {
@@ -184,4 +182,6 @@ input RecommendationInput {
   strategy: StrategyType!
   input: Input
   recommendation: RecommendationOptions
+  filter: [Filter]
+  sort: [SortOption]
 }
