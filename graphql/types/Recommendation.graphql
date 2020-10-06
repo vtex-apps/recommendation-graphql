@@ -166,6 +166,8 @@ input Count {
 
 input RecommendationOptions {
   count: Count
+  filter: [Filter]
+  sort: [SortOption]
 }
 
 input InputType {
@@ -182,6 +184,4 @@ input RecommendationInput {
   strategy: StrategyType!
   input: Input
   recommendation: RecommendationOptions
-  filter: [Filter]
-  sort: [SortOption]
 }
