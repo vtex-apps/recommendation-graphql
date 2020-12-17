@@ -1,7 +1,7 @@
 {
   "vendor": "vtex",
   "name": "recommendation-graphql",
-  "version": "0.3.1",
+  "version": "0.3.2",
   "title": "Recommendation GraphQL",
   "description": "GraphQL schema for Recommendation API.",
   "builders": {
