@@ -7,6 +7,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Added
+
+- `RewardValue`, `PriceValidUntil` and `categoryId` to the product type.
 ## [0.4.0] - 2021-03-30
 
 ### Added

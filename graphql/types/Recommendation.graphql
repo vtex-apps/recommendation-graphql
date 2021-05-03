@@ -10,6 +10,8 @@ type Offer {
   teasers: [Teaser]
   discountHighlights: [Discount]
   giftSkuIds: [String]
+  RewardValue: Float
+  PriceValidUntil: String
 }
 
 type Seller {
@@ -160,6 +162,7 @@ type Product {
   brandId: Int
   benefits: [Benefit]
   cacheId: String
+  categoryId: ID
   categories: [String]
   categoriesIds: [String]
   clusterHighlights: [ClusterHighlight]
